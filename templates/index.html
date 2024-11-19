@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro API Dashboard</title>
+    <style>
+        body {
+            background-color: #f4f4f8;
+            color: #333;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 20px;
+            background-image: radial-gradient(circle, #e0e0e0, #c0c0c0);
+        }
+
+        h1 {
+            color: #ff5722;
+            text-shadow: 2px 2px #333;
+        }
+
+        button {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            box-shadow: 3px 3px #999;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Retro API Dashboard</h1>
+    <p>Select an action:</p>
+    <button onclick="location.href='/api/users'">Get Users</button>
+    <button onclick="location.href='/api/projects'">Get Projects</button>
+    <button onclick="location.href='/api/changes'">Get Changes</button>
+</body>
+</html>
