@@ -20,7 +20,7 @@ This project is a Flask-based web application that interfaces with the Gerrit RE
 
 1. **Clone the Repository**
 ```
-git clone https://github.com/yourusername/gerrit-api-flask.git
+git clone https://github.com/Guignards/gerrit_api_app.git
 cd gerrit-api-flask
 ```
 
