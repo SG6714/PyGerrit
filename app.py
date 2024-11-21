@@ -6,9 +6,9 @@ from api.changes import GerritChangeManager
 app = Flask(__name__)
 
 # Replace with your actual Gerrit URL and credentials
-GERRIT_URL = 'http://z61sp-gitapp01a.zebra.lan:8080'
-USERNAME = input("Username: ") #'sg6714'
-PASSWORD = input("Gerrit API Token: ") # https://gerrit.zebra.com/settings/#HTTPCredentials
+GERRIT_URL = input("GERRIT_URL: ")
+USERNAME = input("Username: ")
+PASSWORD = input("Gerrit API Token: ")
 
 
 user_manager = GerritUserManager(GERRIT_URL, USERNAME, PASSWORD)
