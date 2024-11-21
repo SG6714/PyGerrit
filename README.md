@@ -4,7 +4,7 @@ This project is a Flask-based web application that interfaces with the Gerrit RE
 
 ## Features
 
-- List all active Gerrit users and compare them to a CSV list of Zebra employees.
+- List all active Gerrit users and compare them to a CSV list of AD employees.
 - Retrieve and display Gerrit projects.
 - Fetch and display open changes in Gerrit.
 - Retro-themed web interface for a nostalgic user experience.
@@ -44,7 +44,7 @@ pip install -r requirements.txt
 Create a .env file or set these variables in your environment:
 ```
 SECRET_KEY=your_secret_key
-GERRIT_URL=http://z61sp-gitapp01a.zebra.lan:8080
+GERRIT_URL=your_gerrit_url:port
 GERRIT_USERNAME=your_gerrit_username
 GERRIT_PASSWORD=your_gerrit_password
 FLASK_ENV=development  # Set to 'production' for production environment
