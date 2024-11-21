@@ -7,8 +7,9 @@ app = Flask(__name__)
 
 # Replace with your actual Gerrit URL and credentials
 GERRIT_URL = 'http://z61sp-gitapp01a.zebra.lan:8080'
-USERNAME = 'your_username'
-PASSWORD = 'your_password'
+USERNAME = input("Username: ") #'sg6714'
+PASSWORD = input("Gerrit API Token: ") # https://gerrit.zebra.com/settings/#HTTPCredentials
+
 
 user_manager = GerritUserManager(GERRIT_URL, USERNAME, PASSWORD)
 project_manager = GerritProjectManager(GERRIT_URL, USERNAME, PASSWORD)
@@ -30,11 +31,36 @@ def get_projects():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/api/project_changes', methods=['GET'])
+def get_project_changes():
+    try:
+        projects = project_manager.get_projects()
+        for project in projects:
+            project = change_manager.get_project_changes(project[0])
+        return jsonify(projects), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 @app.route('/api/changes', methods=['GET'])
 def get_changes():
     try:
-        changes = change_manager.get_changes()
+        changes = change_manager.get_changes(10)
         return jsonify(changes), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/fte_users', methods=['GET'])
+def get_users():
+    try:
+        gerrit_users = get_users()
+        csv_users = []
+        with open(file_path, 'r') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                csv_users.append(row)
+        results = user_manager.compare_users(gerrit_users, csv_users)
+        
+        return jsonify(users), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
