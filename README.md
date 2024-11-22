@@ -1,4 +1,4 @@
-# For GH Desktop
+# For VSCode
 
 # GerritAPI Flask Application
 
