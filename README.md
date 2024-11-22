@@ -1,8 +1,6 @@
-# For VSCode
+# PyGerritAPI Application
 
-# GerritAPI Flask Application
-
-This project is a Flask-based web application that interfaces with the Gerrit REST API. It provides endpoints to fetch information about users, projects, and changes from the Gerrit server and presents them through a simple retro-themed web interface.
+This project is a Flask-based web application that interfaces with the native Gerrit REST API. It provides endpoints to fetch information about users, projects, and changes from the Gerrit server and presents them through a simple retro-themed web interface.
 
 ## Features
 
@@ -22,8 +20,8 @@ This project is a Flask-based web application that interfaces with the Gerrit RE
 
 1. **Clone the Repository**
 ```
-git clone https://github.com/Guignards/gerrit_api_app.git
-cd gerrit-api-flask
+git clone https://github.com/Guignards/pygerrit.git
+cd pygerrit
 ```
 
 
