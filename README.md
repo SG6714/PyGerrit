@@ -20,7 +20,7 @@ This project is a Flask-based web application that interfaces with the native Ge
 
 1. **Clone the Repository**
 ```
-git clone https://github.com/Guignards/pygerrit.git
+git clone https://github.com/SG6714/pygerrit.git
 cd pygerrit
 ```
 
