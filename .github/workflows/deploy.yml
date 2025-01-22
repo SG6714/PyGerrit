@@ -21,21 +21,21 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT }}
 
     - name: Configure Docker to use the gcloud command-line tool as a credential helper
-      run: gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
+      run: gcloud auth configure-docker us-docker.pkg.dev
 
     - name: Build Docker image
       run: |
-        IMAGE_NAME=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/gerrit_api
+        IMAGE_NAME=us-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/gerrit_api
         docker build -t $IMAGE_NAME .
 
     - name: Push Docker image to Artifact Registry
       run: |
-        IMAGE_NAME=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/gerrit_api
+        IMAGE_NAME=us-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/gerrit_api
         docker push $IMAGE_NAME
 
     - name: Deploy to Cloud Run
       run: |
-        IMAGE_NAME=gcr.io-docker.pkg.dev/${{ secrets.GCP_PROJECT }}
+        IMAGE_NAME=us-docker.pkg.dev/${{ secrets.GCP_PROJECT }}
         gcloud run deploy gerritAPI \
           --image $IMAGE_NAME \
           --region ${{ secrets.GCP_REGION }} \
