@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from api.users import GerritUserManager
 from api.projects import GerritProjectManager
 from api.changes import GerritChangeManager
@@ -6,14 +6,29 @@ from api.changes import GerritChangeManager
 app = Flask(__name__)
 
 # Replace with your actual Gerrit URL and credentials
-GERRIT_URL = input("GERRIT_URL: ")
-USERNAME = input("Username: ")
-PASSWORD = input("Gerrit API Token: ")
+# GERRIT_URL = input("GERRIT_URL: ")
+# USERNAME = input("Username: ")
+# PASSWORD = input("Gerrit API Token: ")
+
+user_manager = None
+project_manager = None
+change_manager = None
+
+@app.route('/')
+def index():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    USERNAME = request.form['username']
+    PASSWORD = request.form['password']
+    GERRIT_URL = "https://gerrit.zebra.com"
+
+    user_manager = GerritUserManager(GERRIT_URL, USERNAME, PASSWORD)
+    project_manager = GerritProjectManager(GERRIT_URL, USERNAME, PASSWORD)
+    change_manager = GerritChangeManager(GERRIT_URL, USERNAME, PASSWORD)
 
 
-user_manager = GerritUserManager(GERRIT_URL, USERNAME, PASSWORD)
-project_manager = GerritProjectManager(GERRIT_URL, USERNAME, PASSWORD)
-change_manager = GerritChangeManager(GERRIT_URL, USERNAME, PASSWORD)
 
 @app.route('/api/users', methods=['GET'])
 def get_users():
@@ -50,9 +65,9 @@ def get_changes():
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/fte_users', methods=['GET'])
-def get_users():
+def get_fte_users():
     try:
-        gerrit_users = get_users()
+        gerrit_users = get_fte_users()
         csv_users = []
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
@@ -65,5 +80,5 @@ def get_users():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8030, debug=True)
 
