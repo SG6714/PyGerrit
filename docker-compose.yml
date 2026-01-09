@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8030:8030"
+    environment:
+      - FLASK_ENV=${FLASK_ENV:-development}
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - GERRIT_URL=${GERRIT_URL}
+      - GERRIT_USERNAME=${GERRIT_USERNAME}
+      - GERRIT_PASSWORD=${GERRIT_PASSWORD}
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
