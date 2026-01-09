@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request
 from api.users import GerritUserManager
 from api.projects import GerritProjectManager
@@ -5,10 +6,10 @@ from api.changes import GerritChangeManager
 
 app = Flask(__name__)
 
-# Replace with your actual Gerrit URL and credentials
-GERRIT_URL = input("GERRIT_URL: ")
-USERNAME = input("Username: ")
-PASSWORD = input("Gerrit API Token: ")
+# Get configuration from environment variables
+GERRIT_URL = os.environ.get('GERRIT_URL', '')
+USERNAME = os.environ.get('GERRIT_USERNAME', '')
+PASSWORD = os.environ.get('GERRIT_PASSWORD', '')
 
 
 user_manager = GerritUserManager(GERRIT_URL, USERNAME, PASSWORD)
@@ -65,5 +66,5 @@ def get_users():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 

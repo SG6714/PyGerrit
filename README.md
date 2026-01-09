@@ -13,10 +13,31 @@ This project is a Flask-based web application that interfaces with the native Ge
 
 ### Prerequisites
 
+**For Docker (Recommended):**
+- Docker
+- Docker Compose
+
+**For Local Development:**
 - Python 3.x
 - pip (Python package installer)
 
 ### Installation
+
+#### Docker Installation (Recommended)
+
+1. **Clone the Repository**
+```
+git clone https://github.com/SG6714/pygerrit.git
+cd pygerrit
+```
+
+2. **Configure Environment Variables**
+```bash
+cp .env.example .env
+# Edit .env file with your Gerrit credentials
+```
+
+#### Local Installation
 
 1. **Clone the Repository**
 ```
@@ -53,7 +74,41 @@ FLASK_ENV=development  # Set to 'production' for production environment
 
 ## Running the Application
 
-### Start the Flask App
+### Option 1: Using Docker Compose (Recommended)
+
+1. **Copy the example environment file**
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Edit the .env file**
+   Update the `.env` file with your Gerrit credentials:
+   ```
+   GERRIT_URL=https://your-gerrit-server.com:8080
+   GERRIT_USERNAME=your_username
+   GERRIT_PASSWORD=your_gerrit_api_token
+   ```
+
+3. **Start the application**
+   ```bash
+   docker compose up
+   ```
+   
+   To run in detached mode:
+   ```bash
+   docker compose up -d
+   ```
+
+4. **Stop the application**
+   ```bash
+   docker compose down
+   ```
+
+> The app will be available at http://localhost:5000.
+
+### Option 2: Running Locally
+
+#### Start the Flask App
 Run the following command to start the Flask development server:
 ```
 python app.py
